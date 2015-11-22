@@ -1,0 +1,94 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="icon" href="favicon.ico" type="image/x-icon" />
+	<title>Magna tal-Qwiel</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>  
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>	
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+    <style> 
+    	section{
+    		padding:2% 0 0 0;
+    	}
+    	     
+        img {
+        	width:100%;
+        	max-width:30em;
+        }
+        *{
+        	font-family:franklin gothic medium, helvetica, arial, sans-serif;
+        	font-size:1em;
+        }
+    </style>
+    <script src="js/qwiel.js"></script>
+</head>
+
+<body>
+	<script>
+	  window.fbAsyncInit = function() {
+		FB.init({
+		  appId      : '440624339456283',
+		  xfbml      : true,
+		  version    : 'v2.5'
+		});
+	  };
+	
+	  (function(d, s, id){
+		 var js, fjs = d.getElementsByTagName(s)[0];
+		 if (d.getElementById(id)) {return;}
+		 js = d.createElement(s); js.id = id;
+		 js.src = "//connect.facebook.net/en_US/sdk.js";
+		 fjs.parentNode.insertBefore(js, fjs);
+	   }(document, 'script', 'facebook-jssdk'));
+	</script>
+	<section class="container">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Qwiel u Idjomi</h3>
+            </div>
+            <div class="panel-body">
+                <form id="textForm" name="kliemForm" onkeyup="generateKliem();">
+                    <div class="text-center">
+                        <div class="btn-group" data-toggle="buttons">
+                            <label class="btn btn-success active">
+                                <input type="radio" name="template" id="template1" value="template1" autocomplete="off" checked onclick="generateKliem();"> Qwiel u Idjomi
+                            </label>
+                            <label class="btn btn-success">
+                                <input type="radio" name="template" id="template2" value="template2" autocomplete="off" onclick="generateKliem();"> Kontribuzzjoni
+                            </label>
+                        </div>
+                    </div>
+                	<div class="row">
+                		<div class="col-xs-12">
+            				<label for="scale">Pozizzjoni:</label>
+		                	<input class="form-control" name="scale" id='scale' type='range' min='-320' max='500' value='0' step='10' onchange="generateKliem();">
+                		</div>
+					    <div class="col-xs-12">
+					    	<label for="kliem">Kliem:</label>
+		                	<input type="text" class="form-control" placeholder="Ibda ikteb..." name="kliem" onkeyup="generateKliem();">
+                            <button type="button" class="btn btn-default">
+                                <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
+                            </button
+		                	<!-- <span id="helpBlock" class="help-block">Aghfas 'space' jekk is sentenza ma tidhirx kollha.</span> -->
+		                </div>
+	                </div>
+                </form>
+            </div>
+        </div>  
+	    <script src="js/qwiel.js"></script>
+	    <canvas id="myCanvas" width="1000" height="1000" style="display:none;"></canvas>
+	    <img class="center-block" src="images/template1.png" id="canvasImg"/>
+	    <div class="col-xs-12 text-center">
+	    	<a id="imageLink" href="#" download="Qawl" class="btn btn-primary">Nizzel l-Istampa</a>
+	    </div>
+	    <script src="js/qwiel.js"></script>
+    </section>
+</body>
+
+</html>
