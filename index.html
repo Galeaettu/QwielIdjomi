@@ -3,6 +3,7 @@
 
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta http-equiv="content-type" content="text-html; charset=utf-8">
 <link rel="icon" href="favicon.ico" type="image/x-icon" />
 	<title>Magna tal-Qwiel</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>  
@@ -25,70 +26,176 @@
         	font-family:franklin gothic medium, helvetica, arial, sans-serif;
         	font-size:1em;
         }
+        		
+		[class^="cus-"],
+		[class*=" cus-"] {
+		  display: inline-block;
+		  width: 17px;
+		  height: 16px;
+		  *margin-right: .3em;
+		  line-height: 14px;
+		  vertical-align: text-top;
+		  background-image: url("images/spritesheet.png");
+		  background-position: 14px 14px;
+		  background-repeat: no-repeat;
+		}
+		[class^="cus-"]:last-child,
+		[class*=" cus-"]:last-child {
+		  *margin-left: 0;
+		}
+
+		.cus-Logo1 {
+		    width: 16px;
+		    height: 16px;
+		    background-position: -5px -5px;
+		}
+		
+		.fbImageThumb{
+			padding:0.4em;
+			background-color:#eee;
+			border-radius:0.5em;
+		}
+		#canvasImg{
+			margin-bottom:2%;
+		}
+		
     </style>
     <script src="js/qwiel.js"></script>
 </head>
 
 <body>
-	<script>
-	  window.fbAsyncInit = function() {
-		FB.init({
-		  appId      : '440624339456283',
-		  xfbml      : true,
-		  version    : 'v2.5'
-		});
-	  };
-	
-	  (function(d, s, id){
-		 var js, fjs = d.getElementsByTagName(s)[0];
-		 if (d.getElementById(id)) {return;}
-		 js = d.createElement(s); js.id = id;
-		 js.src = "//connect.facebook.net/en_US/sdk.js";
-		 fjs.parentNode.insertBefore(js, fjs);
-	   }(document, 'script', 'facebook-jssdk'));
-	</script>
 	<section class="container">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">Qwiel u Idjomi</h3>
             </div>
             <div class="panel-body">
+            	<p id="fbLogInBanner0" class="text-center bg-danger show">Currently Logged Out</p>
+            	<p id="fbLogInBanner1" class="text-center bg-success hidden">Currently Logged In</p>
                 <form id="textForm" name="kliemForm" onkeyup="generateKliem();">
-                    <div class="text-center">
-                        <div class="btn-group" data-toggle="buttons">
-                            <label class="btn btn-success active">
-                                <input type="radio" name="template" id="template1" value="template1" autocomplete="off" checked onclick="generateKliem();"> Qwiel u Idjomi
-                            </label>
-                            <label class="btn btn-success">
-                                <input type="radio" name="template" id="template2" value="template2" autocomplete="off" onclick="generateKliem();"> Kontribuzzjoni
-                            </label>
-                        </div>
-                    </div>
+	                <div class="row">
+	                    <div class="text-center hidden-xs">
+	                        <div class="btn-group" data-toggle="buttons">
+	                            <label class=" btn btn-success active">
+	                                <input type="radio" name="template" id="template1" value="template1" autocomplete="off" checked onclick="generateKliem();"> Qwiel u Idjomi
+	                            </label>
+	                            <label class="btn btn-success">
+	                                <input type="radio" name="template" id="template2" value="template2" autocomplete="off" onclick="generateKliem();"> Kontribuzzjoni
+	                            </label>
+	                        </div>
+	                    </div>
+	                    <div class="text-center visible-xs">
+	                        <div class="btn-group" data-toggle="buttons">
+	                            <label class=" btn btn-success active">
+	                                <input type="radio" name="template" id="template1" value="template1" autocomplete="off" checked onclick="generateKliem();"> Originali
+	                            </label>
+	                            <label class="btn btn-success">
+	                                <input type="radio" name="template" id="template2" value="template2" autocomplete="off" onclick="generateKliem();"> Kontribuzzjoni
+	                            </label>
+	                        </div>
+	                    </div>
+	                </div>
+	                <p> </p>
                 	<div class="row">
                 		<div class="col-xs-12">
-            				<label for="scale">Pozizzjoni:</label>
-		                	<input class="form-control" name="scale" id='scale' type='range' min='-320' max='500' value='0' step='10' onchange="generateKliem();">
+<!--             				<label for="scale">Pozizzjoni:</label> -->
+							<div class="input-group">
+								<span class="input-group-addon" style="cursor:default"><span class="glyphicon glyphicon-resize-vertical" aria-hidden="true" data-toggle="tooltip" title="Biddel il-pozizzjoni"></span></span>
+							  	<input class="form-control" name="scale" id='scale' type='range' min='-320' max='500' value='0' step='10' onchange="generateKliem();">
+							</div>
                 		</div>
-					    <div class="col-xs-12">
-					    	<label for="kliem">Kliem:</label>
-		                	<input type="text" class="form-control" placeholder="Ibda ikteb..." name="kliem" onkeyup="generateKliem();">
-                            <button type="button" class="btn btn-default">
-                                <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
-                            </button
-		                	<!-- <span id="helpBlock" class="help-block">Aghfas 'space' jekk is sentenza ma tidhirx kollha.</span> -->
+					    <div class="col-xs-12 col-lg-12 col-sm-12 col-md-12">
+<!-- 					    	<label for="kliem">Kliem:</label> -->
+							<div class="input-group">
+								<span class="input-group-addon" style="cursor:default"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></span>
+								<input type="text" class="form-control" placeholder="Ibda ikteb..." name="kliem" id="inputKliem" autofocus onkeyup="generateKliem();">
+							</div>
+							<span id="helpBlock" class="help-block hidden-xs">Aghfas 'space' jekk is sentenza ma tidhirx kollha.</span>
 		                </div>
 	                </div>
                 </form>
+                <p> </p>
+                <div class="text-center well well-sm">
+	                <button class="btn btn-default" id="charCl" onclick="addText('Ċ')">Ċ</button>
+	                <button class="btn btn-default" id="charCl" onclick="addText('ċ')">ċ</button>
+	                <button class="btn btn-default" id="charCl" onclick="addText('Ġ')">Ġ</button>
+	                <button class="btn btn-default" id="charCl" onclick="addText('ġ')">ġ</button>
+	                <button class="btn btn-default" id="charCl" onclick="addText('Ħ')">Ħ</button>
+	                <button class="btn btn-default" id="charCl" onclick="addText('ħ')">ħ</button>
+	                <button class="btn btn-default" id="charCl" onclick="addText('Ż')">Ż</button>
+	                <button class="btn btn-default" id="charCl" onclick="addText('ż')">ż</button>
+                </div>
             </div>
-        </div>  
-	    <script src="js/qwiel.js"></script>
-	    <canvas id="myCanvas" width="1000" height="1000" style="display:none;"></canvas>
-	    <img class="center-block" src="images/template1.png" id="canvasImg"/>
-	    <div class="col-xs-12 text-center">
-	    	<a id="imageLink" href="#" download="Qawl" class="btn btn-primary">Nizzel l-Istampa</a>
-	    </div>
+		    <script src="js/qwiel.js"></script>
+		    <canvas id="myCanvas" width="1000" height="1000" style="display:none;"></canvas>
+		    <img class="center-block" src="images/template1.png" id="canvasImg"/>
+		    <div class="panel-footer">
+		    	<div>
+		    		<div class="pull-right btn-group">
+			    		<a class="btn btn-primary" href="http://www.facebook.com/QwieluIdjomi" target="_blank" data-toggle="tooltip" title="Zur il-Facebook">
+			    			<span class="cus-Logo1" aria-hidden="true"></span>
+			    		</a>
+			    		<a id="fbLogInBtn" class="btn btn-info"  data-toggle="tooltip" title="Log In" onclick="fbLogInClick();">
+			    			<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+			    		</a>
+			    		<a id="fbSendBtn" class="btn btn-danger disabled" data-toggle="tooltip" title="Itfa Facebook">
+			    			<span class="glyphicon glyphicon-send"  data-toggle="modal" data-target="#myModal"></span>
+			    		</a>
+		    		</div>
+		    		
+		    		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+					    <div class="modal-dialog" role="document">
+					        <div class="modal-content">
+					            <div class="modal-header">
+					                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					                <h4 class="modal-title" id="myModalLabel">Qwiel u Idjomi</h4>
+					            </div>
+					            <div class="modal-body">
+					            	<form name="fbForm">
+						            	<div class="row">
+										    <div class="col-xs-12 col-lg-12 col-sm-12 col-md-12">
+										    	<label for="kliem">Tifsira/Messaġġ:</label>
+												<div class="input-group">
+													<span class="input-group-addon" style="cursor:default"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></span>
+													<input type="text" class="form-control" placeholder="Ibda ikteb..." name="fbMessage" id="fbMessage">
+												</div>
+							                </div>
+						                </div>
+					            	</form>
+					            	<p> </p>
+					                <img class="fbImageThumb center-block" src="images/template1.png" id="canvasImg"/>
+					            </div>
+					            <div class="modal-footer">
+					                <button type="button" class="btn btn-default" data-dismiss="modal">Għalaq</button>
+					                <button type="button" class="btn btn-primary" data-toggle="tooltip" title="Work in progress">Itfa fuq il-paġna</button>
+					            </div>
+					        </div>
+					    </div>
+					</div>
+		    	</div>
+			    <div>
+			    	<div class="btn-group">
+			    		<a id="refreshImage" class="btn btn-info" onclick="resetForm();" data-toggle="tooltip" title="Biddel il-qawl">
+			    			<span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+			    		</a>
+			    		<a id="imageLink" href="#" download="Qawl" class="btn btn-primary" data-toggle="tooltip" title="Nizzel l-istampa">
+			    			<span class="glyphicon glyphicon-save" aria-hidden="true"></span>
+<!-- 			    			Nizzel l-Istampa -->
+			    		</a>
+			    	</div>
+			    </div>
+		    </div>
+	    </div>  
 	    <script src="js/qwiel.js"></script>
     </section>
+    <script>
+    		$(document).ready(function(){
+			    $('[data-toggle="tooltip"]').tooltip();   
+			});
+    		$('.btn-group [title]').tooltip({
+			  container: 'body'
+			});
+	</script>
 </body>
 
 </html>

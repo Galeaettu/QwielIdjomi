@@ -1,3 +1,22 @@
+function buttonEnable(){
+	document.getElementById("fbSendBtn").className = "btn btn-info";
+	document.getElementById("fbLogInBtn").className = "btn btn-success";
+	document.getElementById("fbLogInBanner0").className = "text-center bg-danger hidden";
+	document.getElementById("fbLogInBanner1").className = "text-center bg-success show";
+}
+function fbLogInClick(){
+	setTimeout(buttonEnable, 3000);
+}
+
+function addText(word){
+	document.forms["kliemForm"]["kliem"].value += word;
+	focusForm();
+}
+
+function focusForm(){
+	document.kliemForm.kliem.focus();
+}
+
 function dateName()
 {
 	var date = new Date();
@@ -56,7 +75,7 @@ function generateKliem(sentence, scale, templateImage) {
 	    sentence = getKliem();
 	    var canvas = document.getElementById('myCanvas');
 	    var context = canvas.getContext('2d');
-	    var maxWidth = 780;
+	    var maxWidth = 700;
 	    var lineHeight = 140;
 	    var x = (canvas.width - maxWidth) / 2;
 	    var y = 445;
@@ -119,3 +138,7 @@ function generateKliem(sentence, scale, templateImage) {
 	//imageObj.src = 'images/'+templateImage+'.png';
 }
 
+function resetForm(){
+	document.getElementById("textForm").reset();
+	document.kliemForm.kliem.focus();
+}
